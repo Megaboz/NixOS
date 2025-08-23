@@ -1,0 +1,24 @@
+{
+    config,
+    pkgs,
+    ...
+}: {
+    imports = [
+      ../../modules/system.nix
+      ../../modules/xfce.nix
+      
+      ./hardware-configuration.nix
+    ];
+    
+    # Bootloader.
+    boot.loader.grub.enable = true;
+    boot.loader.grub.device = "/dev/sda";
+    boot.loader.grub.useOSProber = true;
+    
+    networking.hostName = "prism";
+    
+    # Enable networking
+    networking.networkmanager.enable = true;
+    
+    system.stateVersion = "25.05";
+}

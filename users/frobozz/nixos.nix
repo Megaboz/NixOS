@@ -1,0 +1,8 @@
+{pkgs, ...}:{
+ users.users.frobozz = {
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDNZ+mKP1WK/q4+vkWKM5QJyY3ibmYwfMiWF9TUN/SRXXQGp8nri1c02h27zYvmCzP95eRIS4hol2ILwXul90VWE8q7K6S9i+JG6Uggus17DfgajfTGbkSFglXkHA+/nL0cfb3aSgvQN6rVDp4UwDGIVDWrSToGAXpTCwdAZnpS/iinZWvojZBFl9hINNdHFKQlrT8XTXJftRzcElHCQTpw8q6bSxZmjL3GWY1C5s7C0zJm8z14dP62U+JzXlXCXtlyoPCFNxx19C3n/2Bzq4G8YuAo0Wt2bewOsHotua6xBaOgl45hjUqWsns1qddhnRdjouPA/hQfYcswrtkoSxVFusfL+vhnCymzGsSu5MLXb/fGDozU4U3LjYTLdQZrxMuMar0tjP1gx2vTfebXIfwMcHt2I+b1tE9/IaqXWLtYdYOEbM4kLvRri8C2OKHf6vHwRFQDQLlBu0b33tolQOFoLd8sKksa+spCgoD+6DZ7mogVg1KTtNXrXde2kHJRQrU= frobozz@Prism" "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAyiqKqjpp3G3gULgQfNGlVRVoi2NJiJMPo662IQ3BQShJuzpbnGop9hKWSOsg9nKZ7E9LvYN2c/rnsKdtPRPS648v1zeLXRBoPtcVTccXDdkFk7hlbwZ0IbFF4HwuACXMx+os30OiumUZ009LQvqkczHNQ3XY2dEHvxhGsFIpyVOAbYN9rngHdoaG3MDUx3QFGCN1w4E/zgyyuoNIO8vdFbsCvqqTqS8eX+Oj9AKjDj7HzmoK6Y/ugUsKa6arxpUUUNtpq6opf4vITTedBslLPYp2XodsFBVcKmMc0/yFODcwm+T7oDM6k11PjuBXi0Or+3+XwFi3P+AANCUIvK4b0w== frobozz@Moonmist"
+    ]; 
+    shell = pkgs.zsh;
+  };
+}
