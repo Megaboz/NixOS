@@ -1,6 +1,6 @@
 {
   description = "Chris Angelini's configuration for NixOS";
-  
+ 
   # the nixConfig here only affects the flake itself, not the system configuration!
   nixConfig = {
 
@@ -13,97 +13,61 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
-  
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    catppuccin-bat = {
-      url = "github:catppuccin/bat";
-      flake = false;
+    nh = {
+        url = "github:nix-community/nh";
     };
     
-    # helix editor, use the master branch
-    helix.url = "github:helix-editor/helix/master";
-  };
+    outputs = inputs@{
+        self,
+        nixpkgs,
+        nix,
+        nixos-hardware,
+        home-manager,
+        ...
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  }: {
-      programs.zsh.enable = true;
-      nixosConfigurations = {
-        trinity = let
-            username = "frobozz";
-            specialArgs = { inherit username; };
-        in
-            nixpkgs.lib.nixosSystem {
-              inherit specialArgs;
-              system = "aarch64";
-              
-              modules = [
-                ./hosts/trinity
-                ./users/${username}/nixos.nix
-                
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                
-                home-manager.extraSpecialArgs = inputs // specialArgs;
-                home-manager.users.${username} = import ./users/${username}/home.nix;
-              }
-              ];
-            };
-            
-        prism = let
-            username = "frobozz";
-            specialArgs = { inherit username; };
-        in
-            nixpkgs.lib.nixosSystem {
-              inherit specialArgs;
-              system = "x86_64-linux";
-              
-              modules = [
-                ./hosts/prism
-                ./users/${username}/nixos.nix
-                
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                
-                home-manager.extraSpecialArgs = inputs // specialArgs;
-                home-manager.users.${username} = import ./users/${username}/home.nix;
-              }
-              ];
-            };
-        
-        spellbreaker = let
-            username = "frobozz";
-            specialArgs = { inherit username; };
-        in
-            nixpkgs.lib.nixosSystem {
-              inherit specialArgs;
-              system = "x86_64-linux";
-              
-              modules = [
-                ./hosts/spellbreaker
-                ./users/${username}/nixos.nix
-                
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                
-                home-manager.extraSpecialArgs = inputs // specialArgs;
-                home-manager.users.${username} = import ./users/${username}/home.nix;
-              }
-              ];
-            };
-      };
-  };
-}
+    }; {
+           nixosConfigurations = {
+               prism = nixpkgs.lib.nixosSystem {
+                   system = "x86_64-linux";
+                   modules = [
+                       # nixos-hardware.nixosModules.lenovo-thinkpad-x260
+                       ./hosts/prism
+                       ./configuration.nix
+    
+                       # make home-manager as a module of nixos
+                       # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
+                       home-manager.nixosModules.home-manager
+                       ({ config, lib, ... }: {
+                           home-manager.useGlobalPkgs = true;
+                           home-manager.useUserPackages = true;
+                           home-manager.extraSpecialArgs = {
+                                inherit inputs; # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+                                inherit (config.networking) hostName;
+                            };
+                            home-manager.users.frobozz = {...}: {
+                                imports = [
+                                    ./homemanager.nix
+                                    ./homemanager/xfce.nix
+                                    ./homemanager/browsers.nix
+                                    ./homemanager/cli-tools.nix
+                                    ./homemanager/desktop-GUI-tools.nix
+                                    ./homemanager/graphics.nix
+                                    ./homemanager/music-playback.nix
+                                    ./homemanager/python.nix
+                                    ./homemanager/videos.nix
+                                ]
+                                ++ (lib.optional config.my.isnotebook ./homemanager/notebooks.nix)
+                                ;
+                            };
+                        }; # end home-manager
+                    ]; # end modules
+               }; # end prism
+           };
+          
