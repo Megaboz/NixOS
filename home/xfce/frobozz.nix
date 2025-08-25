@@ -155,6 +155,21 @@
         
     }; # - End xfce4-appfinder
 
+    xfce4-keyboard-shortcuts = {
+        "/commands/custom/<Super>1" = "xfce4-terminal";
+        "/commands/custom/<Super>2" = "xfce4-popup-whiskermenu";
+        
+        "/xfwm4/custom/<Alt>1" = "workspace_1_key";
+        "/xfwm4/custom/<Alt>2" = "workspace_2_key";
+        "/xfwm4/custom/<Alt>3" = "workspace_3_key";
+        "/xfwm4/custom/<Alt>4" = "workspace_4_key";
+        "/xfwm4/custom/<Alt>5" = "workspace_5_key";
+        "/xfwm4/custom/<Alt>6" = "workspace_6_key";
+        "/xfwm4/custom/<Alt>7" = "workspace_7_key";
+        "/xfwm4/custom/<Alt>8" = "workspace_8_key";
+        "/xfwm4/custom/<Alt>9" = "workspace_9_key";
+    }; # - End xfce4-keyboard-shortcuts
+
   };
 
 }
