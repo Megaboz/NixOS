@@ -6,6 +6,11 @@
       ../../home/xfce/frobozz.nix
       ../../home/applications/frobozz/cli.nix
       ../../home/applications/frobozz/gui-tools.nix
+      ../../home/applications/frobozz/gaming.nix
+      ../../home/applications/frobozz/graphics.nix
+      ../../home/applications/frobozz/music.nix
+      ../../home/applications/frobozz/python.nix
+      ../../home/applications/frobozz/videos.nix
       ../../home/shell
     ];
     
