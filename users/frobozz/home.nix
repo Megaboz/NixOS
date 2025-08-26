@@ -12,6 +12,8 @@
       ../../home/applications/frobozz/python.nix
       ../../home/applications/frobozz/videos.nix
       ../../home/shell
+
+      ../../configs/frobozz/tmux.nix
     ];
     
     programs.git = {
