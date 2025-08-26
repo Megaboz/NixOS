@@ -4,7 +4,7 @@
     imports = [
       ../../home/core.nix
       ../../home/xfce/frobozz.nix
-      #../../home/programs
+      ../../home/applications
       ../../home/shell
     ];
     
