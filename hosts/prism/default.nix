@@ -3,10 +3,12 @@
     pkgs,
     ...
 }: {
+      #../../modules/cosmic.nix
+
     imports = [
       ../../modules/system.nix
-      ../../modules/xfce.nix
-      
+      ../../modules/hyprland.nix
+
       ./hardware-configuration.nix
     ];
     

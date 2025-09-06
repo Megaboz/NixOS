@@ -3,7 +3,7 @@
     
     imports = [
       ../../home/core.nix
-      ../../home/xfce/frobozz.nix
+      ../../home/hyprland/frobozz.nix
       ../../home/applications/frobozz/cli.nix
       ../../home/applications/frobozz/gui-tools.nix
       ../../home/applications/frobozz/gaming.nix

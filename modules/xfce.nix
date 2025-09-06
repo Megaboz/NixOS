@@ -32,6 +32,7 @@
     xfce.thunar
     xfce.thunar-volman
     xfce.xfce4-appfinder
+    xfce.xfce4-battery-plugin
     xfce.xfce4-clipman-plugin
     xfce.xfce4-cpugraph-plugin
     xfce.xfce4-whiskermenu-plugin
@@ -46,9 +47,16 @@
     xfce.xfce4-session
     xfce.xfce4-settings
     xfce.xfce4-systemload-plugin
+    xfce.xfce4-time-out-plugin
     xfce.xfce4-taskmanager
     xfce.xfce4-terminal
     xfce.xfce4-verve-plugin
+    xfce.xfce4-windowck-plugin
+
+    xfce.libxfce4ui
+    xfce.libxfce4util
+    xfce.libxfce4windowing
+
     brightnessctl
   ];
 
